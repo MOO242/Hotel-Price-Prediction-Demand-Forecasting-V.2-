@@ -1,0 +1,14 @@
+pandas
+Numpy
+seaborn
+matplotlib
+scikit-learn
+requests
+flask
+beautifulsoup4
+pytest
+flask-restful
+sqlalchemy
+pydantic
+fastapi
+-e.
