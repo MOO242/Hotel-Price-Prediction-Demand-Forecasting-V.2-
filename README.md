@@ -1,6 +1,6 @@
 # End-to-End Hotel Price Forecasting V2   
 
-an upgraded version of my earlier project
+An upgraded version of my earlier project
 Link - https://github.com/MOO242/Hotel-Price-Prediction-Demand-Forecasting-V.1
 
 If V1 was about the *what* (predicting hotel prices), V2 is all about the *how*: building a production‑grade, modular, and scalable pipeline behind the scenes.
@@ -16,3 +16,5 @@ What’s new in V2:
 - **AWS Integration:** Fully deployed on the cloud for real‑world scalability
 
 Learning to build systems this way has been a game‑changer.
+
+**README still under construction**
