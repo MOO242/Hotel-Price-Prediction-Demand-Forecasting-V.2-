@@ -87,4 +87,3 @@ python src/pipeline/train_pipeline.py
 
 ---
 
-### Would you like me to help you write the `exception.py` or `logger.py` scripts to ensure your pipeline is as "robust" as you've described?
