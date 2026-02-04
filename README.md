@@ -1,20 +1,90 @@
-# End-to-End Hotel Price Forecasting V2   
+# 🏨 Hotel Price Forecasting & Demand V2
 
-An upgraded version of my earlier project
-Link - https://github.com/MOO242/Hotel-Price-Prediction-Demand-Forecasting-V.1
+**An End-to-End MLOps Pipeline for Predictive Hospitality Analytics**
 
-If V1 was about the *what* (predicting hotel prices), V2 is all about the *how*: building a production‑grade, modular, and scalable pipeline behind the scenes.
+## 🎯 Overview
 
-The challenge:
+If V1 was about the *what* (predicting prices), **V2 is about the *how***. This version evolves from simple modeling into a production-grade system designed for scalability, reliability, and 90-day forecasting accuracy.
 
-Forecasting the next 90 days of hotel pricing while applying real MLOps principles and clean software architecture.
+The core challenge addressed here is bridging the gap between a Jupyter Notebook and a deployed AWS environment, utilizing clean software architecture and robust data engineering.
 
-What’s new in V2:
+---
 
-- **Flexible Data Ingestion:** Transitioning from flat files to SQL and MongoDB
-- **Robust Pipelines:** Centralised logging, custom exception handling, and modular components
-- **AWS Integration:** Fully deployed on the cloud for real‑world scalability
+## 🚀 Key Enhancements (V2 vs V1)
 
-Learning to build systems this way has been a game‑changer.
+| Feature | V1 (Prototype) | V2 (Production) |
+| --- | --- | --- |
+| **Data Storage** | Local `.csv` files | Hybrid **SQL (Metadata)** & **MongoDB (NoSQL)** |
+| **Architecture** | Monolithic script | **Modular Components** (Ingestion, Transformation, Trainer) |
+| **Deployment** | Localhost | **AWS (EC2/EKS)** with CI/CD |
+| **Observability** | Print statements | **Centralized Logging** & Custom Exception Handling |
+| **Forecasting** | Static predictions | **90-Day Rolling Forecast** window |
 
-**README still under construction**
+---
+
+## 🏗️ System Architecture
+
+The pipeline is designed with a "Plug-and-Play" mindset. Each module is independent, allowing for easy updates to the model or data source without breaking the system.
+
+1. **Data Ingestion:** Fetches raw data from SQL/MongoDB and triggers the pipeline.
+2. **Data Transformation:** Handles feature engineering, scaling, and handling time-series seasonality.
+3. **Model Trainer:** Evaluates multiple algorithms (XGBoost, Prophet, LSTM) and exports the best-performing model.
+4. **Model Evaluation:** Uses MLflow/DVC (optional) to track metrics and versioning.
+5. **Deployment:** Served via FastAPI and hosted on AWS.
+
+---
+
+## 🛠️ Tech Stack
+
+* **Backend:** Python 3.x
+* **Database:** MongoDB (Booking logs), PostgreSQL (Room metadata)
+* **Cloud:** AWS (S3 for artifacts, EC2 for hosting)
+* **Orchestration:** Docker, GitHub Actions (CI/CD)
+* **ML Frameworks:** Scikit-Learn, XGBoost, Statsmodels
+
+---
+
+## 📂 Project Structure
+
+```text
+├── src/
+│   ├── components/        # Ingestion, Transformation, Model Trainer
+│   ├── pipeline/          # Training & Prediction pipelines
+│   ├── logger.py          # Centralized logging system
+│   └── exception.py       # Custom error handling
+├── notebooks/             # Exploratory Data Analysis (EDA)
+├── artifacts/             # Stored models and preprocessors
+├── app.py                 # FastAPI/Flask entry point
+└── setup.py               # Metadata for package installation
+
+```
+
+---
+
+## 🔧 Getting Started
+
+1. **Clone the repo:**
+```bash
+git clone https://github.com/MOO242/Hotel-Price-Prediction-Demand-Forecasting-V.2.git
+
+```
+
+
+2. **Install Dependencies:**
+```bash
+pip install -r requirements.txt
+
+```
+
+
+3. **Run the Pipeline:**
+```bash
+python src/pipeline/train_pipeline.py
+
+```
+
+
+
+---
+
+### Would you like me to help you write the `exception.py` or `logger.py` scripts to ensure your pipeline is as "robust" as you've described?
