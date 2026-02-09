@@ -1,5 +1,4 @@
 from setuptools import setup, find_packages
-from typing import List
 
 
 def get_requirements(file_path: str) -> list[str]:
@@ -12,6 +11,7 @@ def get_requirements(file_path: str) -> list[str]:
             req.replace("\n", "") for req in requirements if not req.startswith("-e")
         ]
 
+    print(requirements)
     return requirements
 
 
