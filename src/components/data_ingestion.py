@@ -75,8 +75,7 @@ class DataIngestion:
         logger.info("--- Step 4: Initiating Train-Test Split ---")
         try:
             # 1. Pull data from the SQL table we just created
-            query = "SELECT * FROM hotel_bookings"
-            df = pd.read_sql_query(text(query), self.engine.connect())
+            df = pd.read_sql_table("hotel_bookings", self.engine)
             logger.info("Data read from SQL successful. Starting split...")
 
             # 2. Create a folder to save the splits
@@ -109,14 +108,27 @@ class DataIngestion:
 
 
 if __name__ == "__main__":
-
     ingestor = DataIngestion()
-    ingestor.upload_to_postgres()
 
-    obj = DataIngestion()
-    train_data, test_data = obj.initiate_data_split()
+    try:
+        # Step 1 & 2: Upload and Verify
+        ingestor.upload_to_postgres()
 
-    data_transformation = DataTransformation()
-    train_arr, test_arr, _ = data_transformation.initiate_data_transformation(
-        train_data, test_data
-    )
+        # Step 3: Split Data (No need to create 'obj', just use 'ingestor')
+        train_data, test_data = ingestor.initiate_data_split()
+
+        # Step 4: Transform Data
+        data_transformation = DataTransformation()
+        train_arr, test_arr, _ = data_transformation.initiate_data_transformation(
+            train_data, test_data
+        )
+
+        print("Pipeline completed successfully!")
+
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+    finally:
+        # This is where the magic happens
+        ingestor.engine.dispose()
+        logger.info("Database engine connection closed.")
